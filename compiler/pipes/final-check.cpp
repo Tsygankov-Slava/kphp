@@ -20,6 +20,10 @@
 namespace {
 void check_class_immutableness(ClassPtr klass) {
   if (!klass->is_immutable) {
+    kphp_error(!klass->parent_class || !klass->parent_class->is_immutable,
+               fmt_format("Mutable class {} has immutable base {}",
+                          TermStringFormat::paint(klass->name, TermStringFormat::red),
+                          TermStringFormat::paint(klass->parent_class->name, TermStringFormat::red)));
     return;
   }
   klass->members.for_each([klass](const ClassMemberInstanceField &field) {
