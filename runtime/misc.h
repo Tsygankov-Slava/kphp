@@ -50,7 +50,9 @@ void f$var_dump(const mixed &v);
 
 template<class T>
 void f$var_dump(const class_instance<T> &v) {
-  php_warning("print_r used on object");
+//  php_warning("print_r used on object");
+//  printf("empty f$var_dump\n");
+//  f$var_dump(string(v.get_class(), (string::size_type)strlen(v.get_class())));
   return f$var_dump(string(v.get_class(), (string::size_type)strlen(v.get_class())));
 }
 
